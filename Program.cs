@@ -17,6 +17,36 @@ namespace Practice
 
     }
 
+    class clsEmployees
+    {
+        public string ID;
+        public int Age;
+        public string FullName;
+    
+    public void InsertData (string id  ,  int age  , string  fullname )
+        {
+            ID = id;
+            Age  = age;
+            FullName  = fullname;
+
+        }
+    public void PrinData ()
+        {
+            Console.WriteLine("ID       = {0}", ID);
+            Console.WriteLine("Age      = {0}", Age);
+            Console.WriteLine("FullName = {0}", FullName);
+
+            Console.ReadKey();
+        }
+    
+    
+    
+    }
+
+
+
+
+
 
     internal class Program
     {
@@ -35,10 +65,17 @@ namespace Practice
             Person2.LastName = "Maher";
             Console.WriteLine(Person2.FullName());
 
+            Console.WriteLine("\n");
             Console.ReadKey();
+
+            clsEmployees Employee1 = new clsEmployees();
+            Employee1.InsertData(age: 30, fullname: "Mohammed Ibrahim", id: "004615250009");
+
+            Employee1.PrinData();
 
 
         }
+
 
     }
 }
