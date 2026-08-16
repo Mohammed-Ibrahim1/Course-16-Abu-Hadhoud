@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 namespace Practice
 
@@ -17,17 +18,17 @@ namespace Practice
     }
 
 
-        internal class Program
+    internal class Program
+    {
+        static void Main(string[] args)
         {
-            static void Main(string[] args)
-            {
             clsPerson Person1 = new clsPerson();
             Console.WriteLine("Accessing Object 1 (Person1): ");
             Person1.FirstName = "Mohammed";
             Person1.LastName = "Ibrahim";
             Console.WriteLine(Person1.FullName());
 
- 
+
             clsPerson Person2 = new clsPerson();
             Console.WriteLine("\nAccessing Object2 (Person2) :");
             Person2.FirstName = "Ali";
@@ -37,10 +38,10 @@ namespace Practice
             Console.ReadKey();
 
 
-            }
-
         }
+
     }
+}
 
 
 
