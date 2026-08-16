@@ -1,47 +1,64 @@
 ﻿
 using System;
+using System.ComponentModel;
 
-namespace Practice
+namespace AccessModifiers
 
 {
-    class clsPerson
+    class clsA
     {
-        public string FirstName;
-        public string LastName;
+        public int X1 = 10;
+        protected int X3 = 20;
+        private int X2 = 30;
 
-        public string FullName()
+
+        public int func1 ()
         {
-            return FirstName + " " + LastName;
-
+            return 100;
         }
 
+        private  int func2()
+        {
+            return 200;
+        }
+
+        protected int func3()
+        {
+            return 300;
+        }
+
+
     }
+    class clsB : clsA
+    {
+        public int func4()
+        {
+            return X1 + X3 ;
+        }
+    }
+
 
 
     internal class Program
     {
         static void Main(string[] args)
         {
-            clsPerson Person1 = new clsPerson();
-            Console.WriteLine("Accessing Object 1 (Person1): ");
-            Person1.FirstName = "Mohammed";
-            Person1.LastName = "Ibrahim";
-            Console.WriteLine(Person1.FullName());
+          
+         clsA A = new clsA();
 
+         Console.WriteLine("All public members are accessible");
+         Console.WriteLine("X1 = {0}", A.X1);
+         Console.WriteLine("Result of fun1 = {0}", A.func1());
 
-            clsPerson Person2 = new clsPerson();
-            Console.WriteLine("\nAccessing Object2 (Person2) :");
-            Person2.FirstName = "Ali";
-            Person2.LastName = "Maher";
-            Console.WriteLine(Person2.FullName());
-
-            Console.ReadKey();
-
+          clsB B = new clsB();
+            Console.WriteLine("\nObjects from Class B expose all public members of Class A ");
+            Console.WriteLine("X1 = {0}", B.X1);
+            Console.WriteLine("Result of Func 1  = {0}", B.func1());
 
         }
 
     }
-}
 
+}
 
 
