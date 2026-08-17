@@ -4,45 +4,46 @@ using System;
 namespace Practice
 
 {
-    class clsPerson
+
+    class clsPractice
     {
-        public string FirstName;
-        public string LastName;
+        public int X1;
+        public static int X2 = 100;
 
-        public string FullName()
+
+        public int SumofNumbers ()
         {
-            return FirstName + " " + LastName;
-
+            return X1 + X2;
         }
+
+        //Error Cannot Define Which Class to Bring the Value of X1
+        public static int SumofNumbersStatic()
+        {
+            return X1 + X2;
+        }
+
+        public void Printer ()
+        {
+            Console.WriteLine("Mohammed The Best");
+        }
+
+        public static void PrinterStatic()
+        {
+            Printer(); //Error Cannot Define Which Class to Bring the Value of Printer
+        }
+
+        //No Problem Here Because We Are Calling the Static Method from a Non-Static Method
+        public void Printer2()
+        {
+            PrinterStatic();
+        }
+        static void PrinterStatic2()
+        {
+            PrinterStatic();
+        }
+
 
     }
-
-    class clsEmployees
-    {
-        public string ID;
-        public int Age;
-        public string FullName;
-    
-    public void InsertData (string id  ,  int age  , string  fullname )
-        {
-            ID = id;
-            Age  = age;
-            FullName  = fullname;
-
-        }
-    public void PrinData ()
-        {
-            Console.WriteLine("ID       = {0}", ID);
-            Console.WriteLine("Age      = {0}", Age);
-            Console.WriteLine("FullName = {0}", FullName);
-
-            Console.ReadKey();
-        }
-    
-    
-    
-    }
-
 
 
 
@@ -52,26 +53,7 @@ namespace Practice
     {
         static void Main(string[] args)
         {
-            clsPerson Person1 = new clsPerson();
-            Console.WriteLine("Accessing Object 1 (Person1): ");
-            Person1.FirstName = "Mohammed";
-            Person1.LastName = "Ibrahim";
-            Console.WriteLine(Person1.FullName());
-
-
-            clsPerson Person2 = new clsPerson();
-            Console.WriteLine("\nAccessing Object2 (Person2) :");
-            Person2.FirstName = "Ali";
-            Person2.LastName = "Maher";
-            Console.WriteLine(Person2.FullName());
-
-            Console.WriteLine("\n");
-            Console.ReadKey();
-
-            clsEmployees Employee1 = new clsEmployees();
-            Employee1.InsertData(age: 30, fullname: "Mohammed Ibrahim", id: "004615250009");
-
-            Employee1.PrinData();
+          
 
 
         }
