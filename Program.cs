@@ -11,6 +11,14 @@ namespace AccessModifiers
         private int _ID;
         private string _Name = string.Empty;
         private string _Phone = string.Empty;
+
+        private string _Email = "mohammasrabee@gmail.com";
+
+        public int Salary 
+            { get;
+              set;
+        }
+
         public int ID
         {
             get
@@ -48,6 +56,12 @@ namespace AccessModifiers
             }
 
         }
+
+        public string Email
+        {
+            get {return _Email; }
+        }
+
     }
     internal class Program
     {
@@ -58,14 +72,16 @@ namespace AccessModifiers
             Employee1.ID = 512;
             Employee1.Name = "Mohammed Ibrahim";
             Employee1.Phone = "0995-491-570";
-
-
+            Employee1.Salary = 1000;
         Console.WriteLine("Employee ID     = {0}", Employee1.ID);
         Console.WriteLine("Employee Name   = {0}", Employee1.Name);
         Console.WriteLine("Employee Phone  = {0}", Employee1.Phone);
-
+        Console.WriteLine("Employee Email  = {0}", Employee1.Email);
+        Console.WriteLine("Employee Salary = {0}", Employee1.Salary);
             Console.ReadKey();
                 
+
+
                 }
 
     }  
