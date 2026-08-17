@@ -1,5 +1,7 @@
 ﻿
 using System;
+using System.IO.Pipes;
+using System.Net.Cache;
 
 namespace Practice
 
@@ -7,41 +9,33 @@ namespace Practice
 
     class clsPractice
     {
-        public int X1;
-        public static int X2 = 100;
+        private string _Name = string.Empty;
+        private int _Salary = 0;
+        private int _Age = 0;
+        private string _ID  = string.Empty;
 
-
-        public int SumofNumbers ()
+        public string Name
         {
-            return X1 + X2;
-        }
+           get {return _Name;}
+           set{ _Name = value; }
 
-        //Error Cannot Define Which Class to Bring the Value of X1
-        public static int SumofNumbersStatic()
-        {
-            return X1 + X2;
         }
+        public int Salary
+        {
+            get { return _Salary; }
+            set { _Salary = value; }
 
-        public void Printer ()
-        {
-            Console.WriteLine("Mohammed The Best");
         }
-
-        public static void PrinterStatic()
+        public int Age
         {
-            Printer(); //Error Cannot Define Which Class to Bring the Value of Printer
+            get { return _Age; }
+            set { _Age = value; }
         }
-
-        //No Problem Here Because We Are Calling the Static Method from a Non-Static Method
-        public void Printer2()
-        {
-            PrinterStatic();
+        public string ID
+        { 
+            get { return _ID; }
+            set { _ID = value; }
         }
-        static void PrinterStatic2()
-        {
-            PrinterStatic();
-        }
-
 
     }
 
@@ -51,10 +45,30 @@ namespace Practice
 
     internal class Program
     {
+
+
+        int[] Persons = { 1, 2, 3, 3, 4, 5, 5, 6, 7 };
+
+        int[] Age = new int[10];
         static void Main(string[] args)
         {
-          
+            clsPractice Practice1 = new clsPractice();
+            Console.WriteLine("Practicing Set and Get Prpereties");
 
+            Practice1.ID = "OF12311009DFG";
+            Console.WriteLine("Please Enter Your Name ?");
+            Practice1.Name = Console.ReadLine();
+
+            Console.WriteLine("How Much Do you earn per month ?");
+            string Salary = Console.ReadLine();
+
+            Practice1.Age = 19;
+            Practice1.Salary =  Convert.ToInt32(Salary);
+
+            Console.WriteLine("Name   = {0}", Practice1.Name);
+            Console.WriteLine("Salary = {0}", Practice1.Salary);
+            Console.WriteLine("Age    = {0}", Practice1.Age);
+            Console.WriteLine("ID     = {0}", Practice1.ID);
 
         }
 
