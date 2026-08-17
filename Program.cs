@@ -6,52 +6,68 @@ using System.Security.Cryptography.X509Certificates;
 namespace AccessModifiers
 
 {
-    class clsA
+    class clsEmployees
     {
-        public int X1;
-        //Shared Between All Classes
-        public static int X2 ;
-       
-        public  int Menthod1 ()
+        private int _ID;
+        private string _Name = string.Empty;
+        private string _Phone = string.Empty;
+        public int ID
         {
-            return X1 + X2;
-        }
-        //Can Be Called Without Creating Object
-        public static int Menthod2()
-        {
-            return X2;
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                _ID = value;
+
+            }
         }
 
+        public string Name
 
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                _Name = value;
+            }
+        }
+        public string Phone
+        {
+            get
+            {
+                return _Phone;
+            }
+            set
+            {
+                _Phone = value;
+            }
+
+        }
     }
-    
     internal class Program
     {
         static void Main(string[] args)
         {
-          
-         clsA obj1 = new clsA();
-         clsA obj2 = new clsA();
+         clsEmployees Employee1 = new clsEmployees();
 
-            obj1.X1 = 7;
-            obj2.X1 = 10;
+            Employee1.ID = 512;
+            Employee1.Name = "Mohammed Ibrahim";
+            Employee1.Phone = "0995-491-570";
 
-            clsA.X2 = 100;
 
-            Console.WriteLine("Obj1 X1 = {0}", obj1.X1);
-            Console.WriteLine("Obj2 X1 = {0}", obj2.X1);
-            Console.WriteLine("Obj1 Method1  = {0}", obj1.Menthod1());
-            Console.WriteLine("Obj2 Method1  = {0}", obj2.Menthod1());
-            Console.ReadKey();
-
-            Console.WriteLine("\nStatic method2 = {0}", clsA.Menthod2());
-            Console.WriteLine("Static Member  = {0}", clsA.X2);
+        Console.WriteLine("Employee ID     = {0}", Employee1.ID);
+        Console.WriteLine("Employee Name   = {0}", Employee1.Name);
+        Console.WriteLine("Employee Phone  = {0}", Employee1.Phone);
 
             Console.ReadKey();
-        }
+                
+                }
 
     }  
 
 }
-
-
