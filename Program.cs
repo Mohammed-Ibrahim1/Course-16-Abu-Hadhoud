@@ -1,63 +1,56 @@
 ﻿
 using System;
 using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace AccessModifiers
 
 {
     class clsA
     {
-        public int X1 = 10;
-        protected int X3 = 20;
-        private int X2 = 30;
-
-
-        public int func1 ()
+        public int X1;
+        //Shared Between All Classes
+        public static int X2 ;
+       
+        public  int Menthod1 ()
         {
-            return 100;
+            return X1 + X2;
         }
-
-        private  int func2()
+        //Can Be Called Without Creating Object
+        public static int Menthod2()
         {
-            return 200;
-        }
-
-        protected int func3()
-        {
-            return 300;
+            return X2;
         }
 
 
     }
-    class clsB : clsA
-    {
-        public int func4()
-        {
-            return X1 + X3 ;
-        }
-    }
-
-
-
+    
     internal class Program
     {
         static void Main(string[] args)
         {
           
-         clsA A = new clsA();
+         clsA obj1 = new clsA();
+         clsA obj2 = new clsA();
 
-         Console.WriteLine("All public members are accessible");
-         Console.WriteLine("X1 = {0}", A.X1);
-         Console.WriteLine("Result of fun1 = {0}", A.func1());
+            obj1.X1 = 7;
+            obj2.X1 = 10;
 
-          clsB B = new clsB();
-            Console.WriteLine("\nObjects from Class B expose all public members of Class A ");
-            Console.WriteLine("X1 = {0}", B.X1);
-            Console.WriteLine("Result of Func 1  = {0}", B.func1());
+            clsA.X2 = 100;
 
+            Console.WriteLine("Obj1 X1 = {0}", obj1.X1);
+            Console.WriteLine("Obj2 X1 = {0}", obj2.X1);
+            Console.WriteLine("Obj1 Method1  = {0}", obj1.Menthod1());
+            Console.WriteLine("Obj2 Method1  = {0}", obj2.Menthod1());
+            Console.ReadKey();
+
+            Console.WriteLine("\nStatic method2 = {0}", clsA.Menthod2());
+            Console.WriteLine("Static Member  = {0}", clsA.X2);
+
+            Console.ReadKey();
         }
 
-    }
+    }  
 
 }
 
