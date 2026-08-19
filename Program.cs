@@ -7,6 +7,25 @@ namespace Practice
 
 {
 
+    static class clsPracticing
+    {
+
+        private static string _Name = string.Empty;
+
+        public static int Age
+        {
+            get { return Age; }
+            set { Age = value; }
+        }
+
+        public static string Name
+        {
+            get { return _Name; }
+            set { _Name = value; }
+        }
+
+
+    }
     class clsPractice
     {
         private string _Name = string.Empty;
@@ -69,6 +88,13 @@ namespace Practice
             Console.WriteLine("Salary = {0}", Practice1.Salary);
             Console.WriteLine("Age    = {0}", Practice1.Age);
             Console.WriteLine("ID     = {0}", Practice1.ID);
+
+            clsPracticing.Age = 12;
+            clsPracticing.Name = "Mohammed Ibrahim";
+
+            Console.WriteLine("Static Class Practice");
+
+            Console.WriteLine("Age = {0}", clsPracticing.Age);
 
         }
 
