@@ -1,31 +1,48 @@
-﻿using System;
+﻿
+using System;
 
-class clsPersos
+class Settings
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public int Age { get; set; }
-
-    public clsPersos(int id , string name  ,  short age)
+    public static int DayNumber
     {
-        this.ID = id;
-        this.Name = name;
-        this.Age = age;
+        get
+        {
+            return DateTime.Today.Day;
+        }
     }
+
+    public static string DayName
+    {
+        get
+        {
+            return DateTime.Today.DayOfWeek.ToString();
+        }
+    }
+   public static string ProjectPath
+    {
+        get;
+        set;
+    }
+
+    private Settings()
+    {
+
+    }
+
+
 }
 
 internal class Program
 {
-    static void Main (string[] args)
+  static void Main ()
     {
+        //if We Use Static class or Private Constructor We Can Create an object of this class ;
+        // Settings Obj1 = new Settings();
 
-        clsPersos Person1 = new clsPersos(age:18 , id:612,name: "Mohammed Ibrahim");
+        Console.WriteLine(Settings.DayNumber);
+        Console.WriteLine(Settings.DayName);
 
-        Console.WriteLine("ID   = {0}", Person1.ID);
-        Console.WriteLine("Name = {0}", Person1.Name);
-        Console.WriteLine("Age  = {0}", Person1.Age);
-
-        Console.ReadKey();
     }
+
 
 }
