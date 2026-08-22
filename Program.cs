@@ -1,89 +1,92 @@
-﻿
-using System;
-using System.ComponentModel;
-using System.Security.Cryptography.X509Certificates;
+﻿using System;
 
-namespace AccessModifiers
-
+namespace Calculator
 {
-    class clsEmployees
+   class clsCalculator
     {
-        private int _ID;
-        private string _Name = string.Empty;
-        private string _Phone = string.Empty;
+        private float _counter = 0;
+        private float _LastNumber = 0;
+        private string _LastOperation = "Clear";
 
-        private string _Email = "mohammasrabee@gmail.com";
-
-        public int Salary 
-            { get;
-              set;
+        private bool _ValidateNOTZero (float Number)
+        {
+            return (Number <= 0);
+        }
+        public void Add (float number )
+        {
+            _LastNumber = number;
+            _LastOperation = "Adding";
+            _counter += number;
         }
 
-        public int ID
+        public void Subtract (float number )
         {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                _ID = value;
-
-            }
+            _LastNumber -= number;
+            _LastOperation = "Subtracting";
+_counter -= number;
         }
 
-        public string Name
-
+        public void Multiply (float number)
         {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                _Name = value;
-            }
+            _LastNumber = number;
+            _LastOperation = "Multiplying";
+            _counter *= number;
         }
-        public string Phone
+        public void Divide(float number)
         {
-            get
+
+            bool Succeeded = true;
+            _LastOperation = "Dividing";
+
+            if (_ValidateNOTZero(number))
             {
-                return _Phone;
+                _LastNumber = number;
+                _counter /= 1;
+                Succeeded = false;
+
             }
-            set
+            else
             {
-                _Phone = value;
+                _LastNumber = number;
+                _counter /= number;
             }
 
+
+            _counter = _counter / number;
         }
 
-        public string Email
+        public void Clear ()
         {
-            get {return _Email; }
+            _counter = 0;
+        }
+
+        public float GetFinalResult()
+        {
+            return _counter;
+        }
+
+        public void PrintReslt()
+        {
+            Console.WriteLine("{0}", _counter);
         }
 
     }
+
     internal class Program
     {
-        static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
-         clsEmployees Employee1 = new clsEmployees();
+            clsCalculator calculator1  =  new clsCalculator();
 
-            Employee1.ID = 512;
-            Employee1.Name = "Mohammed Ibrahim";
-            Employee1.Phone = "0995-491-570";
-            Employee1.Salary = 1000;
-        Console.WriteLine("Employee ID     = {0}", Employee1.ID);
-        Console.WriteLine("Employee Name   = {0}", Employee1.Name);
-        Console.WriteLine("Employee Phone  = {0}", Employee1.Phone);
-        Console.WriteLine("Employee Email  = {0}", Employee1.Email);
-        Console.WriteLine("Employee Salary = {0}", Employee1.Salary);
-            Console.ReadKey();
-                
+            calculator1.Add(10);
+            calculator1.Multiply(10);
+            Console.WriteLine(calculator1.GetFinalResult());
 
+        }
+    
+    
+    }
 
-                }
-
-    }  
 
 }
