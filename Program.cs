@@ -1,67 +1,47 @@
-﻿
-using System;
-using System.Net.Cache;
-using System.Runtime.InteropServices;
+﻿using System;
 
- class clsPerson
+class Settings
 {
-    private int _ID;
-    private string _Name;
-
-
-    public int ID 
-        { get { return _ID; }
-         set { _ID = value; }
+    public static int DayNumber
+    {
+        get
+        {
+            return DateTime.Today.Day;
+        }
     }
-public string Name { get { return _Name; }
-                     set { _Name = value; } }
 
-    public int Age
+    public static string DayName
+    {
+        get
+        {
+            return DateTime.Today.DayOfWeek.ToString();
+        }
+    }
+    public static string ProjectPath
     {
         get;
         set;
     }
 
-   public  clsPerson ()
+    static Settings ()
     {
-        ID = 0;
-        Name = "Mohammed";
-        Age = 0;
+        ProjectPath = string.Empty; 
     }
-    public clsPerson (int age  ,  int id   ,  string name)
-    {
-this.Name = name;
-       this. Age = age;
-        this.ID = id;
 
-    }
+
 }
 
 internal class Program
 {
-static void Main (string[] args)
+    static void Main()
     {
-        clsPerson Person1 = new clsPerson();
-        Console.WriteLine("Calling Parameterless Constructor");
-        Console.WriteLine("ID   = {0}", Person1.ID);
-        Console.WriteLine("Age  = {0}", Person1.Age);
-        Console.WriteLine("Name = {0}", Person1.Name);
-        Console.ReadKey();
-        Console.WriteLine();
+        //if We Use Static class or Private Constructor We Can Create an object of this class ;
+        // Settings Obj1 = new Settings();
 
-
-        clsPerson Person2 = new clsPerson(id:122, age : 18 , name : "Mohammed Ibrahim");
-        Console.WriteLine("Calling Parametered Constructor");
-        Console.WriteLine("ID   = {0}", Person2.ID);
-        Console.WriteLine("Age  = {0}", Person2.Age);
-        Console.WriteLine("Name = {0}", Person2.Name);
-        Console.ReadKey();
+        Console.WriteLine(Settings.DayNumber);
+        Console.WriteLine(Settings.DayName);
 
     }
 
 
-
-
 }
-
-
