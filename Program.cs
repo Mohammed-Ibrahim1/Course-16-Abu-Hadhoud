@@ -1,85 +1,66 @@
 ﻿
 using System;
+
 namespace Practice
 {
-    class clsPerson
-    { 
-       public int ID { get; set; }
-       public string Name { get; set; }
 
-        public int Age { get; set; }
+    // Base Class / Super Class
 
-        public string UserName { get; set; }
-
-        public string Password { get; set; }
-
-        public clsPerson (int iD, string name, int age)
-        {
-            ID = iD;
-            Name = name;
-            Age = age;
-           
-        }
-
-
-
-
-        public static clsPerson Find (int Id)
-        {
-            if (Id== 10)
-            {
-                return new clsPerson(10, "Mohammed", 18);
-            }
-            else
-            {
-                return null;
-            }
-
-
-        }
-    }
-
-internal class Program
+public class clsPerson
     {
-        static void Main (string[] args)
+        public int ID { get; set; }
+        public string FirstName { get; set; }
+    public string LastName { get; set; }
+        public string Title { get; set; }
+
+        public string FullName
         {
-            clsPerson Person1 = new clsPerson(612, "Mohammed Ibrahim", 18);
-
-            Console.WriteLine("Finding Person 1 By ID");
-
-            clsPerson Person2 = clsPerson.Find(10); 
-
-
-
-            if (Person2 != null)
+        get
             {
-                Console.WriteLine("ID   =  {0}", Person2.ID);
-                Console.WriteLine("Name =  {0}" , Person2.Name);
-                Console.WriteLine("Age  =  {0}", Person2.Age);
-
-                Console.ReadKey();
-
+                return FirstName  +  " " + LastName;
             }
-
-            else
-            {
-                Console.WriteLine("Could Not Find The Person By Giving ID");
-            }
-
-
-
-
-
         }
-
-
-
-
 
     }
 
+    //Sub Class  / Dervied Class
+    public class clsEmployee :  clsPerson 
+    {
+    public float Salary { get; set; }
+    public string DepartmentName { get; set; }
+    
+    public void IncreaseSalaryBy (float Amount)
+        {
+            Salary += Amount;
+        }
+   
+    }
+
+
+    internal  class Program
+    {
+        static void Main ()
+        {
+            clsEmployee Employee1 = new clsEmployee ();
+
+            Employee1.FirstName = "Mohammed";
+            Employee1.LastName = "Ibrahim";
+            Employee1.Salary = 5000;
+            Employee1.ID = 612;
+            Employee1.DepartmentName = "IT";
+            Employee1.Title = "Mr";
 
 
 
+            Console.WriteLine("ID             = {0}", Employee1.ID);
+            Console.WriteLine("Full Name      = {0}", Employee1.FullName);
+            Console.WriteLine("Salary         = {0}", Employee1.Salary);
+            Console.WriteLine("DepartmentName = {0}", Employee1.DepartmentName);
+            Console.WriteLine("Title          = {0}", Employee1.Title);
+
+            Console.ReadKey();
+
+        }
+    }
 
 }
