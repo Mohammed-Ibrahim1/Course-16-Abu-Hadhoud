@@ -1,125 +1,103 @@
-﻿using System;
+﻿
+
+using System;
 using System.ComponentModel;
-
-namespace Practice
+namespace Practicing
 {
-    class clsPractice
+    public class clsPerson
     {
-        private string _Name;
+        private int _ID;
+        private string _FirstName;
+        private string _LastName;
         private string _Phone;
+        private string _Email;
+        private string _Gender;
+        private int _Age;
 
-        public string Name
+        public int ID { get { return _ID; } set { _ID = value; } }
+        public string FirstName { get { return _FirstName; } set { _FirstName = value; } }
+        public string LastName { get { return _LastName; } set { _LastName = value; } }
+        public string Phone { get { return _Phone; } set { _Phone = value; } }
+        public string Email { get { return _Email; } set { _Email = value; } }
+        public string Gender { get { return _Gender; } set { _Gender = value; } }
+        public int Age { get { return _Age; } set { _Age = value; } }
+
+        public string FullName
         {
-            get { return _Name; }
-            set { _Name = value; }
+            get
+            {
+                return FirstName + " " + LastName;
+            }
         }
-
-        public string Phone
+        public void ShowPersonalInformations()
         {
-            get { return _Phone; }
-            set { _Phone = value; }
-        }
-
-
-        public int Age
-        {
-            get;
-            set;
-        }
-        public int ID
-        {
-            get;
-            set;
-        }
-        public clsPractice()
-        {
-            ID = 0;
-            Name = "Mohammed Ibrahim";
-        }
-
-        public clsPractice(string name, int id, string phone, int age)
-        {
-            this.ID = id;
-            this.Phone = phone;
-            this.Name = name;
-            this.Age = age;
-        }
-
-    }
-
-
-    class clsPractice2
-    {
-        static public int _ID;
-
-        static public int ID
-        { get { return _ID; }
-            set { _ID = value; }
-        }
-        static clsPractice2()
-        {
-            _ID = 100;
-        }
-    }
-
-    static class clsPractice3
-    {
-        static public int ID { get; set; }
-        static public string Name { get; set; }
-
-
-
-        static clsPractice3()
-        {
-            ID = 100;
-            Name = "Mohammed Ibrahim";
-            
-        }
-
-    }
-
-    internal class Program
-    {
-        static int Main ()
-        {
-            clsPractice P1 = new clsPractice();
-
-            P1.ID = 100;
-            Console.WriteLine("Name : {0}", P1.Name);
-            Console.WriteLine("ID   : {0}", P1.ID);
-
-            Console.ReadKey();
-            Console.WriteLine("\n");
-
-
-            clsPractice P2  = new clsPractice(id : 078412123 , name : "Rabee Ibrahim" , phone : "0995-491-570" , age : 44);
-            Console.WriteLine("{0}", P2.ID);
-            Console.WriteLine("{0}", P2.Name);
-            Console.WriteLine("{0}", P2.Phone);
+            Console.WriteLine("ID        = {0}", _ID);
+            Console.WriteLine("Fullname  = {0}", FullName);
+            Console.WriteLine("Phone     = {0}", _Phone);
+            Console.WriteLine("Email     = {0}", _Email);
+            Console.WriteLine("Gender    = {0}", _Gender);
+            Console.WriteLine("Age       = {0}", _Age);
 
             Console.WriteLine("\n");
             Console.ReadKey();
 
-
-            clsPractice2 P3 = new clsPractice2();
-            Console.WriteLine("Static Constructor Practice\n");
-
-            Console.WriteLine("ID  :{0}\n", clsPractice2.ID);
-
-            clsPractice2.ID = 123412;
-            Console.WriteLine("ID  :{0}", clsPractice2.ID);
-
-            Console.WriteLine("\n");
-            Console.ReadKey();
-
-
-            Console.WriteLine(clsPractice3.ID);
-            Console.WriteLine(clsPractice3.Name);
-            return 0;
         }
 
+        public clsPerson(int iD, string firstName, string lastName, string phone, string email, string gender, int age)
+        {
+            ID = iD;
+            FirstName = firstName;
+            LastName = lastName;
+            Phone = phone;
+            Email = email;
+            Gender = gender;
+            Age = age;
 
+        }
     }
 
+    public class clsEmployees : clsPerson
+    {
 
+   public float Salary { get; set; }
+   public int WorkingHours { get; set; }
+   public string WorkingEmail { get; set; } 
+
+    public clsEmployees (int iD, string firstName, string lastName, string phone, string email, string gender, int age
+        , float salary , int working , string Wemail) : base (iD , firstName , lastName , phone , email ,  gender , age)
+        {
+this.Salary = salary;
+            this.WorkingHours = working;
+            this.WorkingEmail = Wemail;
+        }
+    }
+
+    public class clsDoctor : clsEmployees
+    {
+        public string Specialization { get; set; }
+        public string HospitalName { get; set; }
+        public string EmergencyNumber { get; set; }
+
+        public clsDoctor (int iD, string firstName, string lastName, string phone, string email, string gender, int age
+        , float salary, int working, string Wemail , string spec , string hospname , string Emcnumber ) : base (iD, firstName, lastName, phone, email, gender, age
+            , salary , working ,Wemail)
+        {
+            Specialization = spec;
+            HospitalName = hospname;
+            EmergencyNumber = Emcnumber;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            clsDoctor Doctor1 = new clsDoctor(512, "Mohammed", "Ibrahim", "0995-491-570", "mohammasrabee@gmail.com", "Male",18 ,
+                5000, 8, "hellenqqpp1122@gmail.com", "Childrens", "AlMashrek", "1234");
+
+
+            Console.ReadKey();
+        }
+    }
 }
+ 
