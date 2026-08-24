@@ -1,106 +1,125 @@
-﻿
-using System;
-using System.IO.Pipes;
-using System.Net.Cache;
+﻿using System;
+using System.ComponentModel;
 
 namespace Practice
-
 {
-
-    static class clsPracticing
+    class clsPractice
     {
+        private string _Name;
+        private string _Phone;
 
-        private static string _Name = string.Empty;
-
-        public static int Age
-        {
-            get { return Age; }
-            set { Age = value; }
-        }
-
-        public static string Name
+        public string Name
         {
             get { return _Name; }
             set { _Name = value; }
         }
 
-
-    }
-    class clsPractice
-    {
-        private string _Name = string.Empty;
-        private int _Salary = 0;
-        private int _Age = 0;
-        private string _ID  = string.Empty;
-
-        public string Name
+        public string Phone
         {
-           get {return _Name;}
-           set{ _Name = value; }
-
+            get { return _Phone; }
+            set { _Phone = value; }
         }
-        public int Salary
-        {
-            get { return _Salary; }
-            set { _Salary = value; }
 
-        }
+
         public int Age
         {
-            get { return _Age; }
-            set { _Age = value; }
+            get;
+            set;
         }
-        public string ID
-        { 
-            get { return _ID; }
-            set { _ID = value; }
+        public int ID
+        {
+            get;
+            set;
+        }
+        public clsPractice()
+        {
+            ID = 0;
+            Name = "Mohammed Ibrahim";
+        }
+
+        public clsPractice(string name, int id, string phone, int age)
+        {
+            this.ID = id;
+            this.Phone = phone;
+            this.Name = name;
+            this.Age = age;
         }
 
     }
 
 
+    class clsPractice2
+    {
+        static public int _ID;
+
+        static public int ID
+        { get { return _ID; }
+            set { _ID = value; }
+        }
+        static clsPractice2()
+        {
+            _ID = 100;
+        }
+    }
+
+    static class clsPractice3
+    {
+        static public int ID { get; set; }
+        static public string Name { get; set; }
 
 
+
+        static clsPractice3()
+        {
+            ID = 100;
+            Name = "Mohammed Ibrahim";
+            
+        }
+
+    }
 
     internal class Program
     {
-
-
-        int[] Persons = { 1, 2, 3, 3, 4, 5, 5, 6, 7 };
-
-        int[] Age = new int[10];
-        static void Main(string[] args)
+        static int Main ()
         {
-            clsPractice Practice1 = new clsPractice();
-            Console.WriteLine("Practicing Set and Get Prpereties");
+            clsPractice P1 = new clsPractice();
 
-            Practice1.ID = "OF12311009DFG";
-            Console.WriteLine("Please Enter Your Name ?");
-            Practice1.Name = Console.ReadLine();
+            P1.ID = 100;
+            Console.WriteLine("Name : {0}", P1.Name);
+            Console.WriteLine("ID   : {0}", P1.ID);
 
-            Console.WriteLine("How Much Do you earn per month ?");
-            string Salary = Console.ReadLine();
+            Console.ReadKey();
+            Console.WriteLine("\n");
 
-            Practice1.Age = 19;
-            Practice1.Salary =  Convert.ToInt32(Salary);
 
-            Console.WriteLine("Name   = {0}", Practice1.Name);
-            Console.WriteLine("Salary = {0}", Practice1.Salary);
-            Console.WriteLine("Age    = {0}", Practice1.Age);
-            Console.WriteLine("ID     = {0}", Practice1.ID);
+            clsPractice P2  = new clsPractice(id : 078412123 , name : "Rabee Ibrahim" , phone : "0995-491-570" , age : 44);
+            Console.WriteLine("{0}", P2.ID);
+            Console.WriteLine("{0}", P2.Name);
+            Console.WriteLine("{0}", P2.Phone);
 
-            clsPracticing.Age = 12;
-            clsPracticing.Name = "Mohammed Ibrahim";
+            Console.WriteLine("\n");
+            Console.ReadKey();
 
-            Console.WriteLine("Static Class Practice");
 
-            Console.WriteLine("Age = {0}", clsPracticing.Age);
+            clsPractice2 P3 = new clsPractice2();
+            Console.WriteLine("Static Constructor Practice\n");
 
+            Console.WriteLine("ID  :{0}\n", clsPractice2.ID);
+
+            clsPractice2.ID = 123412;
+            Console.WriteLine("ID  :{0}", clsPractice2.ID);
+
+            Console.WriteLine("\n");
+            Console.ReadKey();
+
+
+            Console.WriteLine(clsPractice3.ID);
+            Console.WriteLine(clsPractice3.Name);
+            return 0;
         }
 
 
     }
+
+
 }
-
-
-
