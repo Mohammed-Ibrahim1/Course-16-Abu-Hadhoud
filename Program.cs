@@ -1,71 +1,85 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Security;
+using System.Runtime.Intrinsics.X86;
 
-namespace Practice
+namespace Main
 {
-    public class clsA
+public class clsA
     {
         public string Name { get; set; }
+        public int Id { get; set; }
 
-        public int Age { get; set; }
-
-        public virtual void Printer()
+      public virtual void Cheers ()
         {
-            Console.WriteLine("Name  = {0}", Name);
-            Console.WriteLine("Age   = {0}", Name);
-            Console.ReadKey();
+            Console.WriteLine($"Hello It is {Name} My ID is {Id}");
         }
 
-        public clsA(string name, int age)
+        public virtual void Question ()
         {
-            Name = name;
-            Age = age;
+            Console.WriteLine("What is your Name ?");
         }
+
+
     }
 
     public class clsB : clsA
     {
-        public float Salary { get; set; }
+        public string phone { get; set; }
+        public string Email { get; set; }
 
-        public string WorkingStaion { get; set; }
-
-        public override void Printer()
+        public override void Cheers()
         {
-            Console.WriteLine("Salary             = {0}", Salary);
-            Console.WriteLine("Working Station    = {0}", WorkingStaion);
-            base.Printer();
+            Console.WriteLine($"My PhoneNumber is {phone} and my Email is {Email}");
         }
 
-        public clsB(string name, int age, float salary, string workingStaion) : base(name, age)
+        public new void Question()
         {
-            Salary = salary;
-            WorkingStaion = workingStaion;
+            base.Question();
+            Console.WriteLine("What is your Email ?");
+            Console.WriteLine("What is your Phone Number ?");
         }
     }
 
-    internal class Program
 
-    {
-        public static void Main(string[] args)
+   internal class Program
+    { 
+    static void Main (string[] args)
         {
-            clsA A1 = new clsA("Mohammed", 19);
+          clsA A1 = new clsA { Name = "Mohammed" , Id = 312};
+            A1.Cheers();
+            A1.Question();
+            Console.ReadKey();
+            Console.WriteLine("\n");
+            clsB B1 = new clsB();
+            B1.Cheers();
+            B1.Question();
 
-            clsB B1 = new clsB("Mohammed", 19, 200, "Hospital");
-            B1.Printer();
+            Console.ReadKey();
+            Console.WriteLine("\n\n");
 
-            clsA A2 = new clsB("Mohammed", 19, 200, "Hospital");
-            clsB B2 = (clsB)A2;
+           clsB B2 = new clsB();
+            clsA A2 = B2;
 
-            B2.Printer();
-
+            A2.Cheers();
+            A2.Question();
         }
-
-
-
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
+
+     
+
+
+
+
+
 
 }
