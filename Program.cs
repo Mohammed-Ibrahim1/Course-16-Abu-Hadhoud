@@ -1,74 +1,59 @@
 ﻿
+
 using System;
-using System.ComponentModel;
-
-namespace Practice
+namespace Practicing
 {
+   public class clsPerson
+    {   
+    public string Name { get; set; }
 
-    // Base Class / Super Class
-
-    public class clsPerson
-    {
-        public int ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Title { get; set; }
-
-        public string FullName
-        {
-            get
-            {
-                return FirstName + " " + LastName;
-            }
-        }
-
-        public clsPerson(int id  ,  string Firstname ,  string lastname  ,string title)
-        {
-            this.ID = id;
-            this.FirstName =  Firstname;
-            this.LastName = lastname;
-            this.Title  = title;
-
-        }
-
-    }
-
-    //Sub Class  / Dervied Class
-    public class clsEmployee :  clsPerson 
-    { 
-    public float Salary { get; set; }
-    public string DepartmentName { get; set; }
+    public int Age { get; set; }
     
-    public void IncreaseSalaryBy (float Amount)
+        public void Greet ()
         {
-            Salary += Amount;
-        }
-
-        public clsEmployee (int id, string Firstname, string lastname, string title , float Salary ,string Departmentname )
-            : base (id  ,  Firstname  , lastname , title)
-        {
-            this.Salary = Salary;
-            this.DepartmentName = Departmentname;
+            Console.WriteLine($"Hi , My Name is {Name} and I am {Age} years old");
         }
    
+    
     }
 
-
-    internal  class Program
+    public class clsEmployee : clsPerson 
     {
-        static void Main ()
+        public string Company { get; set; }
+        public int Salary { get; set; }
+        
+        public void Work ()
         {
-            clsEmployee Employee1 = new clsEmployee (512,"Mohammed" , "Ibrahim"   ,"Mr" ,5000 , "IT");
+            Console.WriteLine($"I work at {Company} and earn {Salary:C} per year");
+        }
+    }
 
-            Console.WriteLine("ID             = {0}", Employee1.ID);
-            Console.WriteLine("Full Name      = {0}", Employee1.FullName);
-            Console.WriteLine("Salary         = {0}", Employee1.Salary);
-            Console.WriteLine("DepartmentName = {0}", Employee1.DepartmentName);
-            Console.WriteLine("Title          = {0}", Employee1.Title);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //UpCasting
+            clsEmployee Employee1 = new clsEmployee { Name = "Mohammed", Age = 18, Salary = 0, Company = string.Empty };
+            clsPerson Person1 = Employee1;
+            Person1.Greet();
+            Console.WriteLine("\n");
+            Console.ReadKey();
+
+            //DownCasting
+            clsPerson person2 = new clsEmployee { Name = "Mohammed", Age = 18, Salary = 0, Company = string.Empty };
+            clsEmployee Employee2 = (clsEmployee)person2;
+
+            Employee2.Greet();
+            Employee2.Work();
+
+            clsPerson Person3 = new clsPerson { Name = "Mohammed", Age = 18 };
+            clsEmployee Employee3 = (clsEmployee)Person3;
 
             Console.ReadKey();
 
         }
-    }
 
+
+}
 }
