@@ -1,69 +1,71 @@
-﻿using System;
 
-namespace Main
+using System;
+using System.Runtime.InteropServices;
+using System.Security;
+
+namespace Practice
 {
-    public class clsPerson
+    public class clsA
     {
         public string Name { get; set; }
-        public int Id { get; set; }
+
         public int Age { get; set; }
 
-        public void Greet()
+        public virtual void Printer()
         {
-            Console.WriteLine($"Hello it is {Name} and my Id is {Id} and Iam {Age} Years Old");
+            Console.WriteLine("Name  = {0}", Name);
+            Console.WriteLine("Age   = {0}", Name);
+            Console.ReadKey();
         }
-   
+
+        public clsA(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
     }
 
-public class clsEmployee : clsPerson
+    public class clsB : clsA
     {
-        public string WorkingStation { get; set; }
         public float Salary { get; set; }
 
-        public void Introducting ()
+        public string WorkingStaion { get; set; }
+
+        public override void Printer()
         {
-            Greet();
-            Console.WriteLine($"I Work at {WorkingStation} and i get {Salary} Per Month");
+            Console.WriteLine("Salary             = {0}", Salary);
+            Console.WriteLine("Working Station    = {0}", WorkingStaion);
+            base.Printer();
         }
 
+        public clsB(string name, int age, float salary, string workingStaion) : base(name, age)
+        {
+            Salary = salary;
+            WorkingStaion = workingStaion;
+        }
     }
 
- internal class Program
+    internal class Program
+
     {
         public static void Main(string[] args)
         {
-            clsEmployee Employee1 = new clsEmployee {WorkingStation = "Hostptal" , Salary = 500  ,Age = 20  ,Id = 1231 , Name = "Mohammed"  };
-            clsPerson Person1 = Employee1;
+            clsA A1 = new clsA("Mohammed", 19);
 
-            Person1.Greet();
-            Console.ReadKey();
-            Console.WriteLine("\n");
+            clsB B1 = new clsB("Mohammed", 19, 200, "Hospital");
+            B1.Printer();
 
+            clsA A2 = new clsB("Mohammed", 19, 200, "Hospital");
+            clsB B2 = (clsB)A2;
 
-            Employee1.Introducting();
-            Console.ReadKey();
-
-
-
-            //DownCasting
-            clsPerson Person2 = new clsEmployee { WorkingStation = "Clink", Salary = 5000, Age = 22, Id = 712, Name = "Ali" };
-            Person2.Greet();
-            Console.ReadKey();
-            Console.WriteLine("\n");
-            clsEmployee Employee3 = (clsEmployee)Person2;
-
-            Employee3.Introducting();
-            Console.ReadKey();
+            B2.Printer();
 
         }
 
 
 
 
+
     }
-
-
-
-
 
 }
