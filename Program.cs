@@ -25,7 +25,7 @@ public class clsA
 
     public class clsB : clsA
     {
-        public string phone { get; set; }
+        public string phone { get; set; } 
         public string Email { get; set; }
 
         public override void Cheers()
