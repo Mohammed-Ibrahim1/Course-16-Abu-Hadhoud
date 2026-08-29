@@ -1,59 +1,58 @@
 ﻿
-
 using System;
-namespace Practicing
-{
-   public class clsPerson
-    {   
-    public string Name { get; set; }
+using System.Diagnostics;
 
-    public int Age { get; set; }
-    
+namespace Main
+{
+    public abstract class clsPerson
+    {
+       public string Name { get; set; }
+        public int ID { get; set; }
+
+        public abstract void Introduce();
+
         public void Greet ()
         {
-            Console.WriteLine($"Hi , My Name is {Name} and I am {Age} years old");
+            Console.WriteLine($"Hello I am {Name} and ID is {ID}");
+        }
+    }
+
+    public class Employees  : clsPerson
+    {
+        public float Salary { get; set; }
+        public string EmployeeID { get; set; }
+        public override void Introduce()
+        {
+            Console.WriteLine($"I Earn {Salary} Per Month");
+        }
+
+
+
+    }
+
+    internal class Program
+    {
+    public static void Main ()
+        {
+          // clsPerson Person1 = new clsPerson();
+
+          Employees Employee1 = new Employees();
+
+            Employee1.Name = "Mohammed";
+            Employee1.Salary = 1000;
+            Employee1.ID  =33141;
+            Employee1.EmployeeID = "512D";
+
+
+            Employee1.Greet();
+            Console.ReadKey();
+            Console.WriteLine("\n");
+
+            Employee1.Introduce();
+            Console.ReadKey();
         }
    
     
     }
 
-    public class clsEmployee : clsPerson 
-    {
-        public string Company { get; set; }
-        public int Salary { get; set; }
-        
-        public void Work ()
-        {
-            Console.WriteLine($"I work at {Company} and earn {Salary:C} per year");
-        }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-
-            //UpCasting
-            clsEmployee Employee1 = new clsEmployee { Name = "Mohammed", Age = 18, Salary = 0, Company = string.Empty };
-            clsPerson Person1 = Employee1;
-            Person1.Greet();
-            Console.WriteLine("\n");
-            Console.ReadKey();
-
-            //DownCasting
-            clsPerson person2 = new clsEmployee { Name = "Mohammed", Age = 18, Salary = 0, Company = string.Empty };
-            clsEmployee Employee2 = (clsEmployee)person2;
-
-            Employee2.Greet();
-            Employee2.Work();
-
-            clsPerson Person3 = new clsPerson { Name = "Mohammed", Age = 18 };
-            clsEmployee Employee3 = (clsEmployee)Person3;
-
-            Console.ReadKey();
-
-        }
-
-
-}
 }
