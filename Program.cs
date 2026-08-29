@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Security.Authentication;
+using System.Xml.Serialization;
 
 public interface IPerson
 {
@@ -13,7 +14,17 @@ string LastName { get; set; }
 
 }
 
-public abstract class clsPerson : IPerson
+public interface ICommunicate
+{
+    void CallPhone(string PhoneNumber);
+
+    void SendEmail(string Title ,  string Body);
+    void SendSMS();
+
+
+}
+
+public abstract class clsPerson : IPerson , ICommunicate
 {
     public  string   FirstName { get; set; }
 
@@ -21,6 +32,17 @@ public abstract class clsPerson : IPerson
 
     public abstract void Introduce();
 
+    public abstract void CallPhone(string number);
+    
+    public void SendEmail (string Title  ,  string Body )
+    {
+        Console.WriteLine("Email Sent");
+    }
+
+    public void SendSMS ()
+    {
+        Console.WriteLine("SMS sent");
+    }
 
     public void SayGoodBye()
     {
@@ -51,6 +73,11 @@ public class clsEmployee : clsPerson
     public override void Introduce()
     {
         Console.WriteLine("Hello Iam Mohammed and Iam 18 Years Old");
+    }
+
+    public override void CallPhone(string number)
+    {
+        Console.WriteLine($"Calling Number {number}");
     }
 
    public clsEmployee (string fitstname  ,  string lastname) : base (fitstname, lastname) 
