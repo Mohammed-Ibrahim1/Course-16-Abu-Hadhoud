@@ -1,58 +1,72 @@
 ﻿
 using System;
-using System.Diagnostics;
+using System.Security.Authentication;
 
-namespace Main
+public interface IPerson
 {
-    public abstract class clsPerson
+string FirstName { get; set; }
+string LastName { get; set; }
+
+    void Introduce();
+    void Print();
+    string To_String ();
+
+}
+
+public abstract class clsPerson : IPerson
+{
+    public  string   FirstName { get; set; }
+
+    public string LastName { get; set; }
+
+    public abstract void Introduce();
+
+
+    public void SayGoodBye()
     {
-       public string Name { get; set; }
-        public int ID { get; set; }
-
-        public abstract void Introduce();
-
-        public void Greet ()
-        {
-            Console.WriteLine($"Hello I am {Name} and ID is {ID}");
-        }
+        Console.WriteLine("GoodBye!");
     }
 
-    public class Employees  : clsPerson
+    public void Print()
     {
-        public float Salary { get; set; }
-        public string EmployeeID { get; set; }
-        public override void Introduce()
-        {
-            Console.WriteLine($"I Earn {Salary} Per Month");
-        }
+        Console.WriteLine("Hi I am Mohammed");
+    }
 
+    public string To_String()
+    {
+        return "Hallo ich bin Mohammed";
+    }
 
+    public clsPerson(string firstname  ,  string lastname)
+    {
+        FirstName = firstname;
+        LastName = lastname;
 
     }
 
-    internal class Program
+}
+
+public class clsEmployee : clsPerson
+{
+    public override void Introduce()
     {
-    public static void Main ()
-        {
-          // clsPerson Person1 = new clsPerson();
+        Console.WriteLine("Hello Iam Mohammed and Iam 18 Years Old");
+    }
 
-          Employees Employee1 = new Employees();
+   public clsEmployee (string fitstname  ,  string lastname) : base (fitstname, lastname) 
+    {
 
-            Employee1.Name = "Mohammed";
-            Employee1.Salary = 1000;
-            Employee1.ID  =33141;
-            Employee1.EmployeeID = "512D";
+    }
+}
 
 
-            Employee1.Greet();
-            Console.ReadKey();
-            Console.WriteLine("\n");
+public class Program
+{
+   public static void Main (string[] args)
+    {
+        clsEmployee Employee1 = new clsEmployee("Mohammed" ,  "Ibrahim");
 
-            Employee1.Introduce();
-            Console.ReadKey();
-        }
-   
-    
+       
     }
 
 }
