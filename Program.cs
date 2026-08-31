@@ -1,99 +1,51 @@
 ﻿
 using System;
-using System.Security.Authentication;
-using System.Xml.Serialization;
-
-public interface IPerson
+namespace Main
 {
-string FirstName { get; set; }
-string LastName { get; set; }
+    public class OuterClass
+    {
 
-    void Introduce();
-    void Print();
-    string To_String ();
+        private int outervariable = 100;
 
-}
-
-public interface ICommunicate
-{
-    void CallPhone(string PhoneNumber);
-
-    void SendEmail(string Title ,  string Body);
-    void SendSMS();
+        public void OuterMethod ()
+        {
+            Console.WriteLine("This is Outer Mehtode");
+        }
 
 
-}
+        public class InnerClass
+        {
+            private int innervariable = 00;
 
-public abstract class clsPerson : IPerson , ICommunicate
-{
-    public  string   FirstName { get; set; }
+            public void InnerMethod ()
+            {
+                Console.WriteLine("Hello This is Inner Method");
+            }
 
-    public string LastName { get; set; }
+            public void AccessOuterClass (OuterClass outer)
+            {
+                Console.WriteLine($"This is Variable From Outer Class  = {outer.outervariable}");
+            }
+        }
 
-    public abstract void Introduce();
+    }
+    internal class Program
+    {
+    static public void Main (string[]args)
+        {
+            OuterClass Class1 = new OuterClass ();
 
-    public abstract void CallPhone(string number);
+            OuterClass.InnerClass Inner1 = new OuterClass.InnerClass();
+
+            Class1.OuterMethod();
+            Inner1.InnerMethod();
+            Inner1.AccessOuterClass(Class1);
+
+            Console.ReadKey(); 
+        }
     
-    public void SendEmail (string Title  ,  string Body )
-    {
-        Console.WriteLine("Email Sent");
+    
     }
 
-    public void SendSMS ()
-    {
-        Console.WriteLine("SMS sent");
-    }
-
-    public void SayGoodBye()
-    {
-        Console.WriteLine("GoodBye!");
-    }
-
-    public void Print()
-    {
-        Console.WriteLine("Hi I am Mohammed");
-    }
-
-    public string To_String()
-    {
-        return "Hallo ich bin Mohammed";
-    }
-
-    public clsPerson(string firstname  ,  string lastname)
-    {
-        FirstName = firstname;
-        LastName = lastname;
-
-    }
-
-}
-
-public class clsEmployee : clsPerson
-{
-    public override void Introduce()
-    {
-        Console.WriteLine("Hello Iam Mohammed and Iam 18 Years Old");
-    }
-
-    public override void CallPhone(string number)
-    {
-        Console.WriteLine($"Calling Number {number}");
-    }
-
-   public clsEmployee (string fitstname  ,  string lastname) : base (fitstname, lastname) 
-    {
-
-    }
-}
-
-
-public class Program
-{
-   public static void Main (string[] args)
-    {
-        clsEmployee Employee1 = new clsEmployee("Mohammed" ,  "Ibrahim");
-
-       
-    }
 
 }
