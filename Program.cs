@@ -1,91 +1,109 @@
 using System;
-
-namespace Main
+namespace SealedClasses
 {
-   public interface IPerson
+    public sealed class clsApplication
     {
-       string FirstName { get; set; }
-       string LastName { get; set; }
-        string Phone { get; set; }
-        string Email { get; set; }
-        string ID { get; set; }
-        int Age { get; set; }
+        public int ID { get; set; }
+        public string name { get; set; }
+        public float Size { get; set; }
+        
+        public clsApplication (string name)
+        {
+            this.name = name;
+        }
+        public void Introducer ()
+        {
+            Console.WriteLine("This is Mohammed Application");
+        }
 
-        void PresentPersonalInfo();
-    }
+      
+    
+   }
 
-    public interface IEmployee
+    public class clsPerson
     {
- string EmployeeID  { get; set; }
-    string WorkEmail { get; set; }
-
-        float Salary { get; set; }
-
-        string Workingstation { get; set; }
-        void Introduce();
-    }
-
-    public class clsEmployee : IPerson, IEmployee
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
         public string Phone { get; set; }
-        public string Email { get; set; }
-        public string ID { get; set; }
-        public int Age { get; set; }
+        public int ID { get; set; }
 
-        public string EmployeeID { get; set; }
-        public string WorkEmail { get; set; }
-        public float Salary { get; set; }
-
-        public string Workingstation { get; set; }
-        public string FullName()
+        public virtual void Inroduce ()
         {
-            return FirstName + " " + LastName;
+            Console.WriteLine($"Hello My Name is {Name} and My PhoneNumber is {Phone}");
         }
 
-        public void PresentPersonalInfo()
+        public clsPerson(string name, string phone)
         {
-            Console.WriteLine($"Hello My Name is {FullName()} and Iam {Age} Years Old");
-            Console.WriteLine($"My Phone Number is {Phone} and My Email is {Email}");
+            this.Name = name;
+           this.Phone=  phone;
         }
+    }
 
+    public class clsEmployee : clsPerson {
+    public float Salary { get; set; }
 
-        public void Introduce()
+        public string Work { get; set; }
+
+        public sealed override void Inroduce()
         {
-            Console.WriteLine($"I Work at {Workingstation} and I Earn {Salary} Per Month");
-            Console.WriteLine($"My Working Email is {WorkEmail}");
+            Console.WriteLine($"I Earn {Salary} and I work at {Work}");
+            base.Inroduce();
+
         }
-
-        public clsEmployee(string firstname  ,  string lastname  ,string email , string phone  ,  int age , string station 
-            , string workingEmail  ,float salary , string id , string Empid)
+    
+    
+  public clsEmployee (string name, string phone) :  base (name, phone) 
         {
-            FirstName = firstname; 
-            LastName = lastname; 
-            Phone = phone; 
-            Email = email; 
-            Phone = phone; 
-            Age = age; 
-            Workingstation = station; 
-            WorkEmail = workingEmail;
-            Salary = salary;
-            ID = id;
-            EmployeeID = Empid;
+
+        }
+    
+    }
+
+  public  class clsDoctor :  clsEmployee
+    {
+        public string Specialization { get; set; }
+
+
+        public override void Inroduce()
+        {
+            Console.WriteLine("Hello Iam Doctor");
+        }
+        public clsDoctor(string name, string phone) : base(name, phone)
+        {
+
         }
 
     }
+
+    public class clsManager : clsPerson
+    {
+
+        public override void Inroduce()
+        {
+            
+        }
+
+   public clsManager(string name, string phone) : base(name, phone)
+        {
+
+        }
+
+    }
+
+
+
+
 
     internal class Program
     {
-    static public void Main (string[] args)
+        public static void Main(string[] args)
         {
-            clsEmployee Employee1 = new clsEmployee("Mohammed" , "Ibrahim"  ,"mohammasrabee@gmail.com" , "099-549-1570"  ,18,"University"
-                , "hellenqqpp1122@gmail,com" ,5000 ,"512D" ,"223C");
+            clsApplication App1 = new clsApplication("Mohammed");
+            App1.ID = 100;
+            App1.Introducer();
+            Console.WriteLine(App1.name);
+            Console.ReadKey();
 
-            Console.WriteLine("Employee FullName = {0}", Employee1.FullName());
-            Console.WriteLine("Employee Salary   = {0}", Employee1.Salary);
 
         }
     }
-
 }
