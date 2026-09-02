@@ -1,51 +1,57 @@
-﻿
-using System;
-namespace Main
+﻿using System;
+public partial class clsClass2
 {
-    public class OuterClass
+
+    public int Age { get; set; }
+
+    public void Printer()
     {
-
-        private int outervariable = 100;
-
-        public void OuterMethod ()
-        {
-            Console.WriteLine("This is Outer Mehtode");
-        }
-
-
-        public class InnerClass
-        {
-            private int innervariable = 00;
-
-            public void InnerMethod ()
-            {
-                Console.WriteLine("Hello This is Inner Method");
-            }
-
-            public void AccessOuterClass (OuterClass outer)
-            {
-                Console.WriteLine($"This is Variable From Outer Class  = {outer.outervariable}");
-            }
-        }
-
+        Console.WriteLine($"I am {Age} Years Old");
     }
-    internal class Program
+
+}
+
+public partial class clsClass2
+{
+   public string name { get; set; }
+
+    public void Printer2 ()
     {
-    static public void Main (string[]args)
-        {
-            OuterClass Class1 = new OuterClass ();
-
-            OuterClass.InnerClass Inner1 = new OuterClass.InnerClass();
-
-            Class1.OuterMethod();
-            Inner1.InnerMethod();
-            Inner1.AccessOuterClass(Class1);
-
-            Console.ReadKey(); 
-        }
-    
-    
+        Console.WriteLine($"MY Name is {name}");
     }
+
+}
+
+public partial class clsClass()
+{
+    public void Method3 ()
+    {
+        Console.WriteLine("This is Method 3");
+    }
+
+}
+
+
+
+internal class Program
+{
+
+
+
+
+   public static void Main (string[] args)
+    {
+        clsClass C1 = new clsClass();
+
+        C1.Method1();
+        C1.Method2();
+
+        Console.ReadKey();
+    }
+
+
+
+
 
 
 }
